@@ -1,0 +1,2 @@
+project3
+-DCATKIN_DEVEL_PREFIX=/home/shokhzod/catkin_ws/project3_ws/devel -DCMAKE_INSTALL_PREFIX=/home/shokhzod/catkin_ws/project3_ws/install -G Unix Makefiles
