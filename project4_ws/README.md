@@ -4,10 +4,11 @@
 Camera -> Publisher.
 Traffic Light Controller -> Subscriber.
 
-## Media:
+### Screenshot:
 
 ![Screenshot](./media/Subscriber_Publisher_Topic.png)
 
+### Video:
 
 [![Video](https://img.youtube.com/vi/ApuUxrqTN1k/0.jpg)](https://www.youtube.com/watch?v=ApuUxrqTN1k)
 
