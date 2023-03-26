@@ -9,7 +9,7 @@ Traffic Light Controller -> Subscriber.
 ![Screenshot](./media/Subscriber_Publisher_Topic.png)
 
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ApuUxrqTN1k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Video](https://img.youtube.com/vi/ApuUxrqTN1k/0.jpg)](https://www.youtube.com/watch?v=ApuUxrqTN1k)
 
 
 ## Code
