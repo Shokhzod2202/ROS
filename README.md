@@ -7,3 +7,6 @@ Project4_ws contains its own README.md file explaining steps and containing Vide
 
 ## Homework 2 : -> Homework2_ws -> 
 Homework2_ws contains its own README.md file explaining steps and containing Screenshot.
+
+## Homework 3 : -> Homework3_ws -> 
+Homework3_ws contains its own README.md file explaining steps and containing Screenshot.
