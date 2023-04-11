@@ -1,76 +1,45 @@
 
-# Homework 2:
+# Homework 3:
 
 ### Screenshot:
 
 ![Screenshot](./media/pythonHomework2.png)
 
 ## Code
-### rpm_pub.py :
+### calc_trip_distance.py :
 ``` Python
 #!/usr/bin/env python3
 # license removed for brevity
 import rospy
 from std_msgs.msg import Float32
+import yaml
 
-RPM = 60
+def calculate_trip_distance():
+    # Load parameters from YAML file
+    with open('trip_params.yaml', 'r') as f:
+        params = yaml.safe_load(f)
+    start_odometer = params['start_odometer']
+    end_odometer = params['end_odometer']
 
-def main():
-    rospy.init_node('rpm_pub_node')
-    rpm_pub = rospy.Publisher('rpm', Float32, queue_size=10)
-    pub_rate = rospy.Rate(10)
-    
-    rospy.loginfo('Publishing RPM...')
-    
-    while not rospy.is_shutdown():
-        msg = Float32()
-        msg.data = RPM
-        rpm_pub.publish(msg)
-        pub_rate.sleep()
+    # Calculate trip distance
+    trip_distance = end_odometer - start_odometer
+
+    # Publish trip distance to parameter server
+    rospy.set_param('trip_distance', trip_distance)
 
 if __name__ == '__main__':
-    main()
+    # Initialize ROS node
+    rospy.init_node('trip_distance_calculator')
+
+    # Call calculate_trip_distance function
+    calculate_trip_distance()
+
+    # Retrieve trip distance from parameter server
+    trip_distance = rospy.get_param('trip_distance')
+
+    # Print trip distance to console
+    rospy.loginfo('Trip distance: %.2f', trip_distance)
+
 ```
 
-### speed_calc.py :
 
-``` Python
-
-#!/usr/bin/env python3
-
-import rospy
-from std_msgs.msg import Float32
-
-WHEEL_RADIUS = 0.0
-speed_pub = None
-
-
-def sub_callback(rpm):
-    global WHEEL_RADIUS, speed_pub
-    
-    if rospy.has_param("wheel_radius"):
-        WHEEL_RADIUS = rospy.get_param("wheel_radius")
-
-        speed_msg = Float32()
-
-        # Speed = Circumference * Rev/s
-        speed_msg.data = (2 * WHEEL_RADIUS * 3.14159) * (rpm.data / 60)
-
-        speed_pub.publish(speed_msg)
-    else:
-        rospy.logwarn("No value set for 'wheel_radius' parameter.")
-
-
-def main():
-    global speed_pub
-    
-    rospy.init_node("speed_calc_node")
-    speed_pub = rospy.Publisher("speed", Float32, queue_size=10)
-    rospy.Subscriber("rpm", Float32, sub_callback, queue_size=10)
-    rospy.spin()
-
-
-if __name__ == "__main__":
-    main()
-    
-``` 
