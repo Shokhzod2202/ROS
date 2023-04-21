@@ -1,15 +1,15 @@
-#include <ros/ros.h>
-#include <my_robot_msgs/Weather.h>
-#include <my_robot_msgs/WeatherService.h>
+#include "ros/ros.h"
+#include "midterm_assignment/Weather.h"
+#include "midterm_assignment/WeatherService.h"
 
-bool weatherServiceCallback(my_robot_msgs::WeatherService::Request& req,
-                            my_robot_msgs::WeatherService::Response& res)
+bool weatherServiceCallback(midterm_assignment::WeatherService::Request& req,
+                            midterm_assignment::WeatherService::Response& res)
 {
     ROS_INFO("Received request for GPS coordinates: (%f, %f)", req.latitude, req.longitude);
     
     // TODO: Call a weather API or service to get the current weather status for the given GPS coordinates.
     // In this example, we will just return a hardcoded value.
-    my_robot_msgs::Weather weather;
+    midterm_assignment::Weather weather;
     weather.temperature = 20.5;
     weather.humidity = 0.5;
     weather.pressure = 1013.25;

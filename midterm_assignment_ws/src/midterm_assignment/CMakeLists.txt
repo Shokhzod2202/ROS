@@ -10,6 +10,7 @@ project(midterm_assignment)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  std_msgs
   message_generation
 )
 
@@ -45,7 +46,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .msg/.srv/.action file to be processed
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
-
+add_message_files(
+  FILES
+  Weather.msg
+)
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
@@ -73,7 +77,9 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
-  my_robot_msgs
+  midterm_assignment
+
+  
 )
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -154,6 +160,13 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
+add_executable(weather_client src/weather_client.cpp)
+target_link_libraries(weather_client ${catkin_LIBRARIES})
+add_dependencies(weather_client midterm_assignment_generate_messages_cpp)
+
+add_executable(weather_server src/weather_server.cpp)
+target_link_libraries(weather_server ${catkin_LIBRARIES})
+add_dependencies(weather_server midterm_assignment_generate_messages_cpp)
 #############
 ## Install ##
 #############
