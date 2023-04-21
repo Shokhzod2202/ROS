@@ -1,8 +1,0 @@
-prefix=/home/shokhzod/catkin_ws/project3_ws/devel
-
-Name: project3
-Description: Description of project3
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
