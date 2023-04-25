@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
+
 import rospy
+from std_msgs.msg import Float32
 
-if __name__ == "__main__":
-    rospy.init_node("test_node")
+RPM = 60.0
 
-    rospy.loginfo("Hello from test node")
-    rospy.logwarn("This is a warning")
-    rospy.logerr("This is an error")
+rospy.init_node("rpm_pub_node")
 
-    rospy.sleep(1.0)
+rpm_pub = rospy.Publisher("rpm", Float32, queue_size=10)
 
-    rospy.loginfo("End of the program")
-    
-    rate = rospy.Rate(1)
+pub_rate = rospy.Rate(10)
 
-    while not rospy.is_shutdown():
-        rospy.loginfo("Hi there")
-        rate.sleep()
+rospy.loginfo("Publishing RPM...")
+
+while not rospy.is_shutdown():
+
+    msg = Float32()
+
+    msg.data = RPM
+
+    rpm_pub.publish(msg)
+
+    pub_rate.sleep()

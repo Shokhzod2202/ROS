@@ -1,0 +1,3 @@
+<launch>
+  <node name="rpm_pub_node" pkg="homework4" type="rpm_pub" />
+</launch>
